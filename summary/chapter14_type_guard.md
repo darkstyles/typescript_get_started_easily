@@ -210,3 +210,57 @@ function greet(someone: Person | Developer) {
     }
 }
 ```
+
+# 14.6 switch 문과 연산자
+## switch 문
+```ts
+interface Person {
+    name: string;
+    age: number;
+    industry: 'common';
+}
+
+interface Developer {
+    name: string;
+    age: string;
+    industry: 'tech';
+}
+
+function greet(someone: Person | Developer) {
+    switch (someone.industry) {
+        case 'common':
+            console.log(someone.age.toFixed(2));
+            break;
+        case 'tech':
+            console.log(someone.age.split(''));
+            break;
+    }
+}
+```
+## 논리*비교 연산자
+```ts
+// 비교 연산자를 통한 타입 가드
+function sayHi(message: string | null) {
+    if (message === null) {
+        return;
+    }
+
+    if (message.length >= 3) {
+        console.log(message);
+    }
+}
+
+// 단언을 이용하여 타입 강제
+function sayHi(message: string | null) {
+    if (message!.length >= 3) {
+        console.log(message);
+    }
+}
+
+// 논리연산자를 통한 타입 가드
+function sayHi(message: string | null) {
+    if (message && message.length >= 3) {
+        console.log(message)
+    }
+}
+```
